@@ -22,38 +22,34 @@ st.set_page_config(page_title="Chiran EDA App", layout="wide")
 st.title("Chiran's EDA Web App")
 
 st.markdown("""
-Upload your file below to perform EDA. Typically expects Col1=transaction ID, Col2=categorical_column, Col3=numerical_column 
+Upload your file below to perform EDA. Typically expects Col1=id, Col2=categorical_column, Col3=numerical_column 
 
 """)
 
-col1= st.columns(1)
-with col1:
-    file = st.file_uploader("Upload File1 Excel", type=["xlsx"], key='file')
+file = st.file_uploader("Upload File in Excel", type=["xlsx"], key='file')
 
 # Read into DataFrames
 
 if all([file]):
     # Load the  file
-    df = pd.read_excel(file1)
-
-
+    df = pd.read_excel(file)
 
     # 2. Initial Data Inspection
     print("First 5 rows of the DataFrame:")
     print(df.head())
     
-    print("\nLast 5 rows of the DataFrame:")
+    #print("\nLast 5 rows of the DataFrame:")
     print(df.tail())
     
-    print("\nInformation about the DataFrame (data types, non-null counts):")
+    #print("\nInformation about the DataFrame (data types, non-null counts):")
     df.info()
     
-    print("\nDescriptive statistics for numerical columns:")
+    #print("\nDescriptive statistics for numerical columns:")
     print(df.describe())
     
     # 3. Handle Missing Values
-    print("\nMissing values count per column:")
-    print(df.isnull().sum())
+    #print("\nMissing values count per column:")
+    #print(df.isnull().sum())
     
     # Example: Fill missing numerical values with the mean
     # df['numerical_column'].fillna(df['numerical_column'].mean(), inplace=True)
@@ -67,16 +63,16 @@ if all([file]):
     
     # 5. Univariate Analysis (Analyzing single variables)
     # Example: Value counts for a categorical column
-    # print("\nValue counts for 'categorical_column':")
-    # print(df['categorical_column'].value_counts())
+    print("\nValue counts for 'categorical_column':")
+    print(df['categorical_column'].value_counts())
     
     # Example: Histogram for a numerical column
-     plt.figure(figsize=(8, 6))
-     sns.histplot(df['numerical_column'], kde=True)
-     plt.title('Distribution of Numerical Column')
-     plt.xlabel('Numerical Column')
-     plt.ylabel('Frequency')
-     plt.show()
+    plt.figure(figsize=(8, 6))
+    sns.histplot(df['numerical_column'], kde=True)
+    plt.title('Distribution of Numerical Column')
+    plt.xlabel('Numerical Column')
+    plt.ylabel('Frequency')
+    plt.show()
     
     # 6. Bivariate Analysis (Analyzing relationships between two variables)
     # Example: Scatter plot for two numerical columns
@@ -88,12 +84,12 @@ if all([file]):
     # plt.show()
     
     # Example: Box plot for a numerical and categorical column
-     plt.figure(figsize=(8, 6))
-     sns.boxplot(x='categorical_column', y='numerical_column', data=df)
-     plt.title('Box Plot of Numerical Column by Categorical Column')
-     plt.xlabel('Categorical Column')
-     plt.ylabel('Numerical Column')
-     plt.show()
+    plt.figure(figsize=(8, 6))
+    sns.boxplot(x='categorical_column', y='numerical_column', data=df)
+    plt.title('Box Plot of Numerical Column by Categorical Column')
+    plt.xlabel('Categorical Column')
+    plt.ylabel('Numerical Column')
+    plt.show()
     
     # 7. Correlation Analysis (for numerical variables)
     # print("\nCorrelation matrix:")
