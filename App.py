@@ -67,8 +67,7 @@ if all([file]):
     st.write(df['categorical_column'].value_counts())
     
     # Example: Histogram for a numerical column
-    fig, ax = plt.subplots() # Create a Matplotlib figure and axes
-    plt.figure(figsize=(8, 6))
+    fig, ax = plt.subplots(figsize=(8, 6)) # Create a Matplotlib figure and axes
     sns.histplot(df['numerical_column'], kde=True, ax=ax)
     ax.set_title('Distribution of Numerical Column')
     ax.set_title('Numerical Column')
@@ -86,9 +85,8 @@ if all([file]):
     # plt.show()
     
     # Example: Box plot for a numerical and categorical column
-    fig, ax = plt.subplots() # Create a Matplotlib figure and axes
-    plt.figure(figsize=(8, 6))
-    sns.boxplot(x='categorical_column', y='numerical_column', data=df)
+    fig, ax = plt.subplots(figsize=(8, 6)) # Create a Matplotlib figure and axes
+    sns.boxplot(x='categorical_column', y='numerical_column', data=df, ax=ax)
     ax.set_title('Box Plot of Numerical Column by Categorical Column')
     ax.set_title('Categorical Column')
     ax.set_ylabel('Numerical Column')
