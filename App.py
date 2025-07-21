@@ -35,17 +35,17 @@ if all([file]):
     df = pd.read_excel(file)
 
     # 2. Initial Data Inspection
-    print("First 5 rows of the DataFrame:")
-    print(df.head())
-    
+    st.write("First 5 rows of the DataFrame:")
+    st.dataframe(df.head())
+
     #print("\nLast 5 rows of the DataFrame:")
-    print(df.tail())
+    st.dataframe(df.tail())
     
     #print("\nInformation about the DataFrame (data types, non-null counts):")
-    df.info()
+    st.write(df.info())
     
     #print("\nDescriptive statistics for numerical columns:")
-    print(df.describe())
+    st.write(df.describe())
     
     # 3. Handle Missing Values
     #print("\nMissing values count per column:")
@@ -63,17 +63,18 @@ if all([file]):
     
     # 5. Univariate Analysis (Analyzing single variables)
     # Example: Value counts for a categorical column
-    print("\nValue counts for 'categorical_column':")
-    print(df['categorical_column'].value_counts())
+    st.write("\nValue counts for 'categorical_column':")
+    st.write(df['categorical_column'].value_counts())
     
     # Example: Histogram for a numerical column
-    plt.figure(figsize=(8, 6))
-    sns.histplot(df['numerical_column'], kde=True)
-    plt.title('Distribution of Numerical Column')
-    plt.xlabel('Numerical Column')
-    plt.ylabel('Frequency')
-    plt.show()
-    
+    fig, ax = plt.subplots() # Create a Matplotlib figure and axes
+    sns.histplot(df['numerical_column'], kde=True, ax=ax)
+    ax.set_title('Distribution of Numerical Column')
+    ax.set_xlabel('Numerical Column')
+    ax.set_ylabel('Frequency')
+    st.pyplot(fig)
+
+
     # 6. Bivariate Analysis (Analyzing relationships between two variables)
     # Example: Scatter plot for two numerical columns
     # plt.figure(figsize=(8, 6))
